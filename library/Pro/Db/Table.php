@@ -33,7 +33,7 @@ abstract class Pro_Db_Table extends Zend_Db_Table_Abstract {
 
 
     protected function _fetch(Pro_Db_Select $select) {
-        $plugins = Zend_Registry::get(Pro_Resource_DbPlugin::REGISTRY_ALIAS);
+        $plugins = Zend_Registry::isRegistered(Pro_Resource_DbPlugin::REGISTRY_ALIAS) ? Zend_Registry::get(Pro_Resource_DbPlugin::REGISTRY_ALIAS) : array();
         if (!empty($plugins)) {
             foreach($plugins as $alias => $className) {
                 $this->logger->log("applying DbPlugin \"$alias\"", Zend_Log::DEBUG);
