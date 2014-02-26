@@ -1,0 +1,14 @@
+{
+    "name": "qshurick/pro_core",
+    "description": "Project core",
+    "require": {
+        "qshurick/pro_log": "dev-master",
+        "zendframework/zendframework1": "1.12.3"
+    },
+    "authors": [
+        {
+            "name": "qshurick",
+            "email": "shu.rick.ifmo@gmail.com"
+        }
+    ]
+}
