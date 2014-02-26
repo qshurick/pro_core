@@ -10,5 +10,11 @@
             "name": "qshurick",
             "email": "shu.rick.ifmo@gmail.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-0": {
+            "Pro_": "library/",
+            "Pro_Resource_": "library/Pro/Resource"
+        }
+    }
 }
