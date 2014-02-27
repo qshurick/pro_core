@@ -29,7 +29,7 @@ abstract class Pro_Db_Table extends Zend_Db_Table_Abstract {
      * @param bool $withFromPart
      * @return Pro_Db_Select
      */
-    public function select($withFromPart = self::SELECT_WITHOUT_FROM_PART) {
+    public function select($withFromPart = self::SELECT_WITH_FROM_PART) {
         $select = new Pro_Db_Select($this);
         if ($withFromPart == self::SELECT_WITH_FROM_PART) {
             $select->from($this->info(self::NAME), Pro_Db_Select::SQL_WILDCARD, $this->info(self::SCHEMA));
