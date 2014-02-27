@@ -12,10 +12,16 @@ abstract class Pro_Db_Table extends Zend_Db_Table_Abstract {
      * @var Zend_Log
      */
     protected $logger;
+    protected $_plugins = array();
 
     public function init() {
         parent::init();
         $this->logger = Zend_Registry::get('logger')->ensureStream('system');
+    }
+
+    public function addPlugin(Pro_Db_Plugin_PluginAbstract $plugin) {
+        if (!in_array($plugin, $this->_plugins))
+            $this->_plugins[] = $plugin;
     }
 
 
@@ -33,12 +39,19 @@ abstract class Pro_Db_Table extends Zend_Db_Table_Abstract {
 
 
     protected function _fetch(Pro_Db_Select $select) {
+        // Global plugins
         $plugins = Zend_Registry::isRegistered(Pro_Resource_DbPlugin::REGISTRY_ALIAS) ? Zend_Registry::get(Pro_Resource_DbPlugin::REGISTRY_ALIAS) : array();
         if (!empty($plugins)) {
             foreach($plugins as $alias => $className) {
                 $this->logger->log("applying DbPlugin \"$alias\"", Zend_Log::DEBUG);
                 /** @var $plugin Pro_Db_Plugin_PluginAbstract */
                 $plugin = new $className();
+                $plugin->beforeFetch($this->_name, $select);
+            }
+        }
+        // Local plugins
+        if (!empty($this->_plugins)) {
+            foreach($this->_plugins as $plugin) {
                 $plugin->beforeFetch($this->_name, $select);
             }
         }
