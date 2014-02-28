@@ -20,7 +20,6 @@ class Pro_Resource_DbPlugin extends Zend_Application_Resource_ResourceAbstract {
         $options = $this->getOptions();
         /** @var $logger Zend_Log */
         $logger = Zend_Registry::get('logger')->ensureStream('system');
-        $logger->log("Loading DbPlugins...", Zend_Log::DEBUG);
 
         $plugins = array();
 
