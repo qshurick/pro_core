@@ -37,6 +37,19 @@ abstract class Pro_Db_Table extends Zend_Db_Table_Abstract {
         return $select;
     }
 
+    public function insert(array $data) {
+        $cols = $this->_getCols();
+        $date = date('Y-m-d H:i:s');
+        if (array_search('date_create', $cols)) {
+            $data['date_create'] = $date;
+        }
+        if (array_search('date_update', $cols)) {
+            $data['date_update'] = $date;
+        }
+
+        return parent::insert($data);
+    }
+
 
     protected function _fetch(Pro_Db_Select $select) {
         // Global plugins
