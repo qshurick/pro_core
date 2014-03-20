@@ -3,7 +3,7 @@
     "description": "Project core",
     "require": {
         "qshurick/pro_log": "dev-master",
-        "zendframework/zendframework1": "1.12.3"
+        "zendframework/zendframework1": "1.12.x"
     },
     "authors": [
         {
