@@ -51,7 +51,7 @@ abstract class Pro_Db_Table extends Zend_Db_Table_Abstract {
     }
 
 
-    protected function _fetch(Pro_Db_Select $select) {
+    protected function _fetch(Zend_Db_Table_Select $select) {
         // Global plugins
         $plugins = Zend_Registry::isRegistered(Pro_Resource_DbPlugin::REGISTRY_ALIAS) ? Zend_Registry::get(Pro_Resource_DbPlugin::REGISTRY_ALIAS) : array();
         if (!empty($plugins)) {

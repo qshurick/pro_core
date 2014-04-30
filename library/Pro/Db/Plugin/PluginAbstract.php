@@ -29,6 +29,6 @@ abstract class Pro_Db_Plugin_PluginAbstract {
      *
      * Method can update current Pro_Db_Select if necessary
      */
-    public function beforeFetch($tableName, Pro_Db_Select &$select) {}
+    public function beforeFetch($tableName, Zend_Db_Table_Select &$select) {}
 
 }
