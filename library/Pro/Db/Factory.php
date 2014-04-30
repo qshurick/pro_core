@@ -17,7 +17,18 @@ class Pro_Db_Factory {
      */
     protected $_select;
 
-    public function __construct(Pro_Db_Table $table) {
+    public function __construct(Pro_Db_Table $table = null) {
+        if (!empty($table)) {
+            $this->setTable($table);
+        }
+        $this->init();
+    }
+
+    public function init() {
+
+    }
+
+    public function setTable(Pro_Db_Table $table) {
         $this->_table = $table;
         $this->_select = $this->_table->select();
     }
