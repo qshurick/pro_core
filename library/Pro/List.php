@@ -87,7 +87,7 @@ class Pro_List implements Iterator, Countable {
             $object = $this->objects[$key];
             $isSuitable= true;
             foreach ($condition as $condProperty => $condValue) {
-                if (!isset($object[$condProperty]) || $object[$condProperty] === $condValue) {
+                if (!isset($object[$condProperty]) || $object[$condProperty] !== $condValue) {
                     $isSuitable = false;
                     break;
                 }
@@ -95,10 +95,27 @@ class Pro_List implements Iterator, Countable {
             if (!$isSuitable) {
                 continue;
             }
-            $filtered_objects[] = $object;
+            $filtered[] = $object;
         }
 
         return new Pro_List($filtered);
+    }
+
+    public function find($property, $value = null) {
+        $condition = (is_array($property)) ?
+            $property :
+            array($property => $value,);
+
+        foreach ($this->object_keys as $key) {
+            $object = $this->objects[$key];
+            foreach ($condition as $condProperty => $condValue) {
+                if (isset($object[$condProperty]) && $object[$condProperty] === $condValue) {
+                    return $object;
+                }
+            }
+        }
+
+        return null;
     }
 
     /**
