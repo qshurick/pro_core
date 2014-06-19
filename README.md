@@ -9,7 +9,7 @@ application.ini
         autoloaderNamespaces[] = "Pro_"
         pluginPaths.Pro_Resource_ = "Pro/Resource"
     
-        resource.db-plugin.ALIAS = "Some_Application_Db_Plugin"
+        resources.db-plugin.ALIAS = "Some_Application_Db_Plugin"
 ```
 
 Ensure in ```include_path``` directory ```vendor/qshurick/pro_core/library```, e.g.:
